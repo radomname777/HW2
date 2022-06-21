@@ -7,4 +7,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="kisspng-arrow-down-computer-icons-android-tanda-panah-5b3fd32e716d71.6753236515309094864646.png" />
+    <None Remove="pngtre.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="kisspng-arrow-down-computer-icons-android-tanda-panah-5b3fd32e716d71.6753236515309094864646.png" />
+    <Resource Include="pngtre.png" />
+  </ItemGroup>
+
 </Project>
