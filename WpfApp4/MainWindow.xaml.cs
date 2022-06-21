@@ -81,16 +81,19 @@ namespace WpfApp4
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            if (sender is CheckBox cb) {
-                if (cb.IsChecked == true && saveFile.FileName.Length > 0)Time(true);
-                else
+            if (sender is CheckBox cb)
+            {
+                if ((bool)(cb.IsChecked))
                 {
-                    MessageBox.Show("Save file location");
-                    cb.IsChecked = false;
+                    if (saveFile.FileName.Length > 0) Time(true);
+                    else
+                    {
+                        MessageBox.Show("Save file location");
+                        cb.IsChecked = false;
+                    }
                 }
-                return;
+                else Time(false);
             }
-            Time(false);
         }
     }
 }

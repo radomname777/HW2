@@ -28,7 +28,7 @@
                 </Button.Background>
             </Button>
             <Button Tag="Save" Click="Button_Click" Grid.Column="1" BorderBrush="#FFFCF7F7" Grid.ColumnSpan="2" Margin="2,0,31,0" Foreground="White" Background="#FF009CFF"  >SAVE</Button>
-            <CheckBox Checked="CheckBox_Checked" Grid.Column="2" Margin="7,4,26,-4" Grid.ColumnSpan="2">
+            <CheckBox Click="CheckBox_Checked" Grid.Column="2" Margin="7,4,26,-4" Grid.ColumnSpan="2">
                 <CheckBox.LayoutTransform>
                     <ScaleTransform ScaleX="2" ScaleY="2" />
                 </CheckBox.LayoutTransform>
