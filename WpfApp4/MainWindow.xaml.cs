@@ -18,9 +18,6 @@ using System.Windows.Threading;
 
 namespace WpfApp4
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private SaveFileDialog saveFile = new SaveFileDialog();
@@ -46,10 +43,6 @@ namespace WpfApp4
             openFileDialog.Filter = "Text Files|*.txt";
             if (openFileDialog.ShowDialog() == true)
                 TextRich.Document.Blocks.Add(new Paragraph(new Run(File.ReadAllText(openFileDialog.FileName))));
-        }
-        private void CopyText()
-        {
-            TextRich.Copy();
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -89,20 +82,15 @@ namespace WpfApp4
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             if (sender is CheckBox cb) {
-                if (cb.IsChecked == true && saveFile.FileName.Length > 0)
-                {
-                    Time(true);
-                }
+                if (cb.IsChecked == true && saveFile.FileName.Length > 0)Time(true);
                 else
                 {
-                    
                     MessageBox.Show("Save file location");
                     cb.IsChecked = false;
                 }
                 return;
             }
             Time(false);
-
         }
     }
 }
