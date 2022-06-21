@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfApp4
 {
@@ -22,6 +23,7 @@ namespace WpfApp4
     /// </summary>
     public partial class MainWindow : Window
     {
+        private SaveFileDialog saveFile = new SaveFileDialog();
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +31,7 @@ namespace WpfApp4
         }
         private void SaveFile()
         {
-            SaveFileDialog saveFile = new SaveFileDialog();
+           
             saveFile.Filter = "Text Files|*.txt";
             if (saveFile.ShowDialog() == true)
             {
@@ -66,6 +68,41 @@ namespace WpfApp4
                 }
             }
            
+        }
+        private DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        private void Time(bool boolen)
+        {
+            if (boolen)
+            {
+                dispatcherTimer.Tick += new EventHandler(dispatcherTimer_Tick);
+                dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
+                dispatcherTimer.Start();
+            }
+            else dispatcherTimer.Stop();
+        }
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            using StreamWriter sw = new StreamWriter(saveFile.FileName);
+            string richText = new TextRange(TextRich.Document.ContentStart, TextRich.Document.ContentEnd).Text;
+            sw.Write(richText);
+        }
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            if (sender is CheckBox cb) {
+                if (cb.IsChecked == true && saveFile.FileName.Length > 0)
+                {
+                    Time(true);
+                }
+                else
+                {
+                    
+                    MessageBox.Show("Save file location");
+                    cb.IsChecked = false;
+                }
+                return;
+            }
+            Time(false);
+
         }
     }
 }
